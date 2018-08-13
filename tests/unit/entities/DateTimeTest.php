@@ -6,6 +6,9 @@ use Codeception\Test\Unit;
 
 class DateTimeTest extends Unit
 {
+    /**
+     *
+     */
     public function testAssertFailed()
     {
         $this->expectException(\Exception::class);

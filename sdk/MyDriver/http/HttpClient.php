@@ -7,6 +7,11 @@ use Psr\Http\Message\RequestInterface;
 
 class HttpClient extends Client implements ClientInterface
 {
+    /**
+     * @param RequestInterface $request
+     * @return mixed|\Psr\Http\Message\ResponseInterface
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     public function sendRequest(RequestInterface $request)
     {
         return $this->send($request);

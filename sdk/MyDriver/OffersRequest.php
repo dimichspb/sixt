@@ -7,11 +7,33 @@ use app\sdk\MyDriver\entities\Type;
 
 class OffersRequest extends Request
 {
+    /**
+     * @var PlaceName
+     */
     protected $origin;
+
+    /**
+     * @var PlaceName
+     */
     protected $destination;
+
+    /**
+     * @var DateTime
+     */
     protected $dateTime;
+
+    /**
+     * @var Type
+     */
     protected $type;
 
+    /**
+     * OffersRequest constructor.
+     * @param PlaceName $origin
+     * @param PlaceName $destination
+     * @param DateTime $dateTime
+     * @param Type $type
+     */
     public function __construct(PlaceName $origin, PlaceName $destination, DateTime $dateTime, Type $type)
     {
         $this->origin = $origin;

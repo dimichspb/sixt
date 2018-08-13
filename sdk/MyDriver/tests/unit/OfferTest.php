@@ -9,6 +9,9 @@ use Codeception\Test\Unit;
 
 class OfferTest extends Unit
 {
+    /**
+     *
+     */
     public function testCreateSuccess()
     {
         $vehicleClass = $this->getVehicleClassMock();

@@ -14,14 +14,15 @@ use app\sdk\MyDriver\entities\ApiKey;
 use app\sdk\MyDriver\http\HttpClient;
 use app\sdk\MyDriver\MyDriver;
 use app\sdk\MyDriver\Offer;
-use app\sdk\MyDriver\OffersRequest;
 use app\sdk\MyDriver\parsers\JsonParser;
 use app\services\quotation\QuotationService;
 use Codeception\Test\Unit;
 
 class QuotationServiceTest extends Unit
 {
-
+    /**
+     * @throws \Psr\Http\Client\ClientException
+     */
     public function testGetQuotationsSuccess()
     {
         $quotationService = new QuotationService($this->getMyDriverMock(), $this->getCommissionMock());

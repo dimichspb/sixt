@@ -6,6 +6,11 @@ use Assert\Assertion;
 
 class JsonParser implements ParserInterface
 {
+    /**
+     * @param $body
+     * @return array
+     * @throws \Assert\AssertionFailedException
+     */
     public function parseResponseBody($body)
     {
         $result = json_decode($body, true);
@@ -16,6 +21,11 @@ class JsonParser implements ParserInterface
         return (array)$result;
     }
 
+    /**
+     * @param $object
+     * @return string
+     * @throws \Assert\AssertionFailedException
+     */
     public function prepareRequestBody($object)
     {
         $result = json_encode($object);

@@ -11,6 +11,9 @@ use Psr\Http\Message\ResponseInterface;
 
 class MyDriverTest extends Unit
 {
+    /**
+     *
+     */
     public function testCreateSuccess()
     {
         $myDriver = new MyDriver($this->getApiKeyMock(), $this->getHttpClientMock(), $this->getParserMock());

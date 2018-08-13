@@ -8,7 +8,14 @@ use yii\base\Model;
 
 class Quotation implements Arrayable
 {
+    /**
+     * @var Commission
+     */
     protected $commission;
+
+    /**
+     * @var Offer
+     */
     protected $offer;
 
     use ArrayableTrait;
@@ -27,6 +34,11 @@ class Quotation implements Arrayable
      */
     protected $vehicleClass;
 
+    /**
+     * Quotation constructor.
+     * @param Offer $offer
+     * @param Commission $commission
+     */
     public function __construct(Offer $offer, Commission $commission)
     {
         $this->offer = $offer;
@@ -35,6 +47,9 @@ class Quotation implements Arrayable
         $this->updatePrice();
     }
 
+    /**
+     * Updates prices based on offer and commission
+     */
     protected function updatePrice()
     {
         $this->price = new Price($this->addCommission($this->offer->getPrice(), $this->commission));
@@ -42,31 +57,52 @@ class Quotation implements Arrayable
         $this->vehicleClass = new VehicleClass($this->offer->getVehicleClass()->getValue());
     }
 
+    /**
+     * @param \app\sdk\MyDriver\entities\Price $price
+     * @param Commission $commission
+     * @return float|int|null
+     */
     protected function addCommission(\app\sdk\MyDriver\entities\Price $price, Commission $commission)
     {
         return $price->getValue() + ($price->getValue() * $commission->getValue() / 100);
     }
 
+    /**
+     * @return Offer
+     */
     public function getOffer()
     {
         return $this->offer;
     }
 
+    /**
+     * @return Price
+     */
     public function getPrice()
     {
         return $this->price;
     }
 
+    /**
+     * @return Currency
+     */
     public function getCurrency()
     {
         return $this->currency;
     }
 
+    /**
+     * @return VehicleClass
+     */
     public function getVehicleClass()
     {
         return $this->vehicleClass;
     }
 
+    /**
+     * Fields for REST API response
+     * @return array
+     */
     public function fields()
     {
         return [

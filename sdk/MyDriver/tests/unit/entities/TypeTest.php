@@ -7,6 +7,9 @@ use Codeception\Test\Unit;
 
 class TypeTest extends Unit
 {
+    /**
+     *
+     */
     public function testAssertSuccess()
     {
         $mock = $this
@@ -24,6 +27,9 @@ class TypeTest extends Unit
         expect($mock->getValue())->equals(Type::DURATION);
     }
 
+    /**
+     *
+     */
     public function testAssertFailed()
     {
         $this->expectException(AssertionFailedException::class);

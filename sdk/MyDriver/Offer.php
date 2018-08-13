@@ -7,10 +7,27 @@ use app\sdk\MyDriver\entities\VehicleClass;
 
 class Offer extends Response
 {
+    /**
+     * @var VehicleClass
+     */
     protected $vehicleClass;
+
+    /**
+     * @var Price
+     */
     protected $price;
+
+    /**
+     * @var Currency
+     */
     protected $currency;
 
+    /**
+     * Offer constructor.
+     * @param VehicleClass $vehicleClass
+     * @param Price $price
+     * @param Currency $currency
+     */
     public function __construct(VehicleClass $vehicleClass, Price $price, Currency $currency)
     {
         $this->vehicleClass = $vehicleClass;

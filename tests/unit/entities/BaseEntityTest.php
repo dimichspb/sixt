@@ -6,6 +6,9 @@ use Codeception\Test\Unit;
 
 class BaseEntityTest extends Unit
 {
+    /**
+     *
+     */
     public function testGetValueSuccess()
     {
         $mock = $this

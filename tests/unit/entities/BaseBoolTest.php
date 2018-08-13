@@ -10,6 +10,9 @@ use Codeception\Test\Unit;
 
 class BaseBoolTest extends Unit
 {
+    /**
+     *
+     */
     public function testAssertSuccess()
     {
         $mock = $this
@@ -27,6 +30,9 @@ class BaseBoolTest extends Unit
         expect($mock->getValue())->equals(false);
     }
 
+    /**
+     *
+     */
     public function testAssertFailed()
     {
         $this->expectException(AssertionFailedException::class);

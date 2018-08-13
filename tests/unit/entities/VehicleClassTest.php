@@ -7,6 +7,9 @@ use Codeception\Test\Unit;
 
 class VehicleClassTest extends Unit
 {
+    /**
+     *
+     */
     public function testAssertSuccess()
     {
         $mock = $this
@@ -38,6 +41,9 @@ class VehicleClassTest extends Unit
         expect($mock->getValue())->equals(VehicleClass::BUSINESS_VAN);
     }
 
+    /**
+     *
+     */
     public function testAssertFailed()
     {
         $this->expectException(AssertionFailedException::class);

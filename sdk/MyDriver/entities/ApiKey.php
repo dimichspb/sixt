@@ -5,6 +5,10 @@ use Assert\Assertion;
 
 class ApiKey extends BaseString
 {
+    /**
+     * @param $value
+     * @throws \Assert\AssertionFailedException
+     */
     public function assert($value)
     {
         parent::assert($value);

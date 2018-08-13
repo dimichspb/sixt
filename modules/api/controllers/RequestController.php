@@ -11,11 +11,36 @@ use yii\web\Response;
 
 class RequestController extends Controller
 {
+    /**
+     * @var QuotationService
+     */
     protected $quotationService;
+
+    /**
+     * @var RequestForm
+     */
     protected $requestForm;
+
+    /**
+     * @var Request
+     */
     protected $request;
+
+    /**
+     * @var Response
+     */
     protected $response;
 
+    /**
+     * RequestController constructor.
+     * @param $id
+     * @param Module $module
+     * @param QuotationService $quotationService
+     * @param RequestForm $requestForm
+     * @param Request $request
+     * @param Response $response
+     * @param array $config
+     */
     public function __construct($id, Module $module, QuotationService $quotationService, RequestForm $requestForm,
                                 Request $request, Response $response, array $config = [])
     {
@@ -27,6 +52,9 @@ class RequestController extends Controller
         parent::__construct($id, $module, $config);
     }
 
+    /**
+     * @return array
+     */
     public function behaviors()
     {
         $behaviors = parent::behaviors();
@@ -44,6 +72,11 @@ class RequestController extends Controller
         ];
     }
 
+    /**
+     * Quotations method result
+     *
+     * @return \app\entities\Quotation[]
+     */
     public function actionQuotations()
     {
         $requestParams = $this->request->post();

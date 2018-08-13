@@ -10,6 +10,10 @@ class HttpMethod
 
     protected $value;
 
+    /**
+     * HttpMethod constructor.
+     * @param $value
+     */
     public function __construct($value)
     {
         Assertion::inArray($value, [

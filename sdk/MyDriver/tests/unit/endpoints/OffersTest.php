@@ -48,6 +48,9 @@ class OffersTest extends Unit
         ],
     ];
 
+    /**
+     * @throws \Psr\Http\Client\ClientException
+     */
     public function testRunSuccess()
     {
         $offersEndpoint = new Offers($this->getApiKeyMock(), $this->getHttpClientMock(), $this->getParserMock());

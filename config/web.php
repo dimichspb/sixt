@@ -59,7 +59,7 @@ $config = [
             'bundles' => [
                 'dosamigos\google\maps\MapAsset' => [
                     'options' => [
-                        'key' => require ('googleApiKey.php'),
+                        'key' => file_exists('googleApiKey.php')? require ('googleApiKey.php'): null,
                     ]
                 ]
             ]

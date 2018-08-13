@@ -9,9 +9,21 @@ use app\sdk\MyDriver\OffersRequest;
 
 class QuotationService
 {
+    /**
+     * @var MyDriver
+     */
     protected $myDriver;
+
+    /**
+     * @var Commission
+     */
     protected $commission;
 
+    /**
+     * QuotationService constructor.
+     * @param MyDriver $myDriver
+     * @param Commission $commission
+     */
     public function __construct(MyDriver $myDriver, Commission $commission)
     {
         $this->myDriver = $myDriver;
@@ -21,6 +33,7 @@ class QuotationService
     /**
      * @param RequestForm $requestForm
      * @return Quotation[]
+     * @throws \Psr\Http\Client\ClientException
      */
     public function getQuotations(RequestForm $requestForm)
     {

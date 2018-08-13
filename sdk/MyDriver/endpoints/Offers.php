@@ -13,19 +13,35 @@ use app\sdk\MyDriver\OffersRequest;
 use app\sdk\MyDriver\Offer;
 use app\sdk\MyDriver\parsers\ParserInterface;
 use app\sdk\MyDriver\Request;
-use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 use Psr\Http\Message\ResponseInterface;
 
 class Offers extends Endpoint
 {
+    /**
+     * @var ApiKey
+     */
     protected $apiKey;
+
+    /**
+     * @var HttpClientInterface
+     */
     protected $httpClient;
+
+    /**
+     * @var ParserInterface
+     */
     protected $parser;
 
     protected $method = HttpMethod::POST;
     protected $uri = 'https://www.mydriver.com/api/v2/offers';
     protected $headers = [ 'Content-Type' => 'application/json' ];
 
+    /**
+     * Offers constructor.
+     * @param ApiKey $apiKey
+     * @param HttpClientInterface $httpClient
+     * @param ParserInterface $parser
+     */
     public function __construct(ApiKey $apiKey, HttpClientInterface $httpClient, ParserInterface $parser)
     {
         $this->apiKey = $apiKey;
@@ -46,6 +62,10 @@ class Offers extends Endpoint
         return $this->parseResponse($httpResponse);
     }
 
+    /**
+     * @param OffersRequest $offersRequest
+     * @return HttpRequest
+     */
     protected function prepareRequest(OffersRequest $offersRequest)
     {
         $request = new \stdClass();

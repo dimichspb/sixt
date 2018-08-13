@@ -9,6 +9,9 @@ use Codeception\Test\Unit;
 
 class OffersRequestTest extends Unit
 {
+    /**
+     *
+     */
     public function testCreateSuccess()
     {
         $origin = $this->getOriginMock();

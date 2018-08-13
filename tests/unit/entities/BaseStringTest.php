@@ -7,6 +7,9 @@ use Codeception\Test\Unit;
 
 class BaseStringTest extends Unit
 {
+    /**
+     *
+     */
     public function testAssertSuccess()
     {
         $mock = $this
@@ -17,6 +20,9 @@ class BaseStringTest extends Unit
         expect($mock->getValue())->equals('string');
     }
 
+    /**
+     *
+     */
     public function testAssertFailed()
     {
         $this->expectException(AssertionFailedException::class);
@@ -34,6 +40,9 @@ class BaseStringTest extends Unit
             ->getMockForAbstractClass();
     }
 
+    /**
+     *
+     */
     public function testToStringSuccess()
     {
         $mock = $this

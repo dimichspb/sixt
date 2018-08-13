@@ -7,6 +7,9 @@ use Codeception\Test\Unit;
 
 class BaseIntegerTest extends Unit
 {
+    /**
+     *
+     */
     public function testAssertSuccess()
     {
         $mock = $this
@@ -24,6 +27,9 @@ class BaseIntegerTest extends Unit
         expect($mock->getValue())->equals(-10);
     }
 
+    /**
+     *
+     */
     public function testAssertFailed()
     {
         $this->expectException(AssertionFailedException::class);

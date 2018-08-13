@@ -7,6 +7,9 @@ use Codeception\Test\Unit;
 
 class CurrencyTest extends Unit
 {
+    /**
+     *
+     */
     public function testAssertSuccess()
     {
         $mock = $this
@@ -24,6 +27,9 @@ class CurrencyTest extends Unit
         expect($mock->getValue())->equals(Currency::USD);
     }
 
+    /**
+     *
+     */
     public function testAssertFailed()
     {
         $this->expectException(AssertionFailedException::class);

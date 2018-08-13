@@ -7,6 +7,9 @@ use Codeception\Test\Unit;
 
 class JsonParserTest extends Unit
 {
+    /**
+     * @throws \Assert\AssertionFailedException
+     */
     public function testParseResponseBodySuccess()
     {
         $parser = new JsonParser();
@@ -14,6 +17,9 @@ class JsonParserTest extends Unit
         expect($parser->parseResponseBody('[{"value":100}]'))->equals([['value' => 100]]);
     }
 
+    /**
+     * @throws \Assert\AssertionFailedException
+     */
     public function testPrepareRequestBodySuccess()
     {
         $parser = new JsonParser();
@@ -24,6 +30,9 @@ class JsonParserTest extends Unit
         expect($parser->prepareRequestBody([$object]))->equals('[{"value":100}]');
     }
 
+    /**
+     * @throws \Assert\AssertionFailedException
+     */
     public function testParseResponseBodyFailed()
     {
         $this->expectException(ParseException::class);
