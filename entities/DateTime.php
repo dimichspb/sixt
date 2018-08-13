@@ -8,4 +8,9 @@ class DateTime extends BaseDateTime
         $value = (new \DateTime($value))->format('c');
         parent::__construct($value);
     }
+
+    public function __toString()
+    {
+        return (string)$this->value;
+    }
 }

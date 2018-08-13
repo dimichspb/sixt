@@ -1,10 +1,12 @@
 <?php
 
 use app\widgets\GoogleMaps\GoogleMapsWidget;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $requestForm app\forms\RequestForm */
 /* @var $dataProvider \yii\data\DataProviderInterface */
+/* @var $exception Exception */
 
 $this->title = Yii::$app->name;
 
@@ -12,6 +14,7 @@ $this->title = Yii::$app->name;
 <div class="site-index">
 
     <div class="body-content">
+        <?php Pjax::begin(['id' => 'request_form']) ?>
         <div class="row">
             <div class="col-xs-12">
                 <?= $this->render('request/_form', [
@@ -19,7 +22,6 @@ $this->title = Yii::$app->name;
                 ]) ?>
             </div>
         </div>
-        <?php \yii\widgets\Pjax::begin(['id' => 'result']); ?>
         <div class="row">
             <div class="col-xs-12">
                 <?php /* echo $this->render('request/_map', [
@@ -30,11 +32,17 @@ $this->title = Yii::$app->name;
         </div>
         <div class="row">
             <div class="col-xs-12">
+                <?php if (isset($dataProvider)): ?>
                 <?= $this->render('request/_quotations', [
                     'dataProvider' => $dataProvider
                 ]) ?>
+                <?php else: ?>
+                <?= $this->render('request/_exception', [
+                    'exception' => $exception
+                ]) ?>
+                <?php endif; ?>
             </div>
         </div>
-        <?php \yii\widgets\Pjax::end(); ?>
+        <?php Pjax::end(); ?>
     </div>
 </div>

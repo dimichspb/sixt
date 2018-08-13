@@ -6,28 +6,20 @@
 use yii\bootstrap\Html;
 use yii\widgets\Pjax;
 
-$this->registerJs(
-<<<JS
-$("document").ready(function(){
-    $("#request_form").on("pjax:end", function() {
-        $.pjax.reload({container:"#result"});
-    });
-});
-JS
-);
-
 ?>
-<?php Pjax::begin(['id' => 'request_form']) ?>
 <?php $activeForm = \yii\bootstrap\ActiveForm::begin(['options' => ['data-pjax' => true]]) ?>
 
 <div class="row row-eq-height">
     <div class="col-xs-12 col-md-10">
         <div class="row">
-            <div class="col-xs-12 col-md-6">
+            <div class="col-xs-12 col-md-4">
                 <?= $activeForm->field($form, 'origin'); ?>
             </div>
-            <div class="col-xs-12 col-md-6">
+            <div class="col-xs-12 col-md-4">
                 <?= $activeForm->field($form, 'destination'); ?>
+            </div>
+            <div class="col-xs-12 col-md-4">
+                <?= $activeForm->field($form, 'startDateTime'); ?>
             </div>
         </div>
     </div>
@@ -37,4 +29,3 @@ JS
 </div>
 
 <?php \yii\bootstrap\ActiveForm::end() ?>
-<?php Pjax::end(); ?>

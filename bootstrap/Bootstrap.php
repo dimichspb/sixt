@@ -1,7 +1,6 @@
 <?php
 namespace app\bootstrap;
 
-use app\commands\RequestController;
 use app\entities\Commission;
 use app\entities\DateTime;
 use app\entities\PlaceName;
@@ -10,24 +9,15 @@ use app\forms\RequestForm;
 use app\sdk\MyDriver\entities\ApiKey;
 use app\sdk\MyDriver\http\HttpClient;
 use app\sdk\MyDriver\http\HttpClientInterface;
-use app\sdk\MyDriver\http\HttpMethod;
-use app\sdk\MyDriver\MyDriver;
 use app\sdk\MyDriver\parsers\JsonParser;
 use app\sdk\MyDriver\parsers\ParserInterface;
-use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Psr7\Uri;
-use GuzzleHttp\ClientInterface;
-use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
 use yii\base\BootstrapInterface;
 
 class Bootstrap implements BootstrapInterface
 {
     /**
      * Define default delay after current datetime for request
-     * 
+     *
      * @var float|int
      */
     public $timeout = 24 * 60; // minutes

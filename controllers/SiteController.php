@@ -94,37 +94,36 @@ class SiteController extends Controller
     /**
      * Displays homepage.
      *
-     * @param null $origin
-     * @param null $destination
-     * @param null $startDateTime
-     * @param string $type
      * @return string
+     * @throws \yii\base\InvalidConfigException
      */
-    public function actionIndex($origin = null, $destination = null, $startDateTime = null, $type = Type::DISTANCE)
+    public function actionIndex()
     {
-
-        if ($this->request->isPost) {
-            $this->requestForm->load($this->request->queryParams);
-        } else {
-            $this->requestForm->load([
-                'origin' => $origin,
-                'destination' => $destination,
-                'startDateTime' => $startDateTime,
-                'type' => $type,
-            ]);
-        }
-
-        if ($this->requestForm->validate()) {
-            try {
-                $quotations = $this->quotationService->getQuotations($this->requestForm);
-            } catch (\Exception $exception) {
-                return $this->render('exception', [
-                    'requestForm' => $this->requestForm,
-                    'exception' => $exception
-                ]);
+        try {
+            $requestParams = $this->request->post($this->requestForm->formName());
+            if (isset($requestParams['origin'])) {
+                $this->requestForm->setOrigin($requestParams['origin']);
             }
-        } else {
-            $quotations = [];
+            if (isset($requestParams['destination'])) {
+                $this->requestForm->setDestination($requestParams['destination']);
+            }
+            if (isset($requestParams['startDateTime'])) {
+                $this->requestForm->setStartDateTime($requestParams['startDateTime']);
+            }
+            if (isset($requestParams['type'])) {
+                $this->requestForm->setType($requestParams['type']);
+            }
+
+            if ($this->requestForm->validate()) {
+                $quotations = $this->quotationService->getQuotations($this->requestForm);
+            } else {
+                $quotations = [];
+            }
+        } catch (\Exception $exception) {
+            return $this->render('index', [
+                'requestForm' => $this->requestForm,
+                'exception' => $exception,
+            ]);
         }
 
         $dataProvider = new ArrayDataProvider([
