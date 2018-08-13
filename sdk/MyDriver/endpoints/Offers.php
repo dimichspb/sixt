@@ -13,6 +13,7 @@ use app\sdk\MyDriver\OffersRequest;
 use app\sdk\MyDriver\Offer;
 use app\sdk\MyDriver\parsers\ParserInterface;
 use app\sdk\MyDriver\Request;
+use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 use Psr\Http\Message\ResponseInterface;
 
 class Offers extends Endpoint
@@ -32,6 +33,11 @@ class Offers extends Endpoint
         $this->parser = $parser;
     }
 
+    /**
+     * @param Request $request
+     * @return Offer[]
+     * @throws \Psr\Http\Client\ClientException
+     */
     public function run(Request $request)
     {
         $httpRequest = $this->prepareRequest($request);
@@ -55,6 +61,10 @@ class Offers extends Endpoint
         return $httpRequest;
     }
 
+    /**
+     * @param ResponseInterface $httpResponse
+     * @return Offer[]
+     */
     protected function parseResponse(ResponseInterface $httpResponse)
     {
         $results = [];

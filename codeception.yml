@@ -7,13 +7,14 @@ paths:
 settings:
     bootstrap: _bootstrap.php
     memory_limit: 1024M
-    colors: true
+    colors: false
 modules:
     config:
         Yii2:
             configFile: 'config/test.php'
             cleanup: false
-
+include:
+    - sdk\MyDriver
 # To enable code coverage:
 #coverage:
 #    #c3_url: http://localhost:8080/index-test.php/

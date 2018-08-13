@@ -52,16 +52,6 @@ class RequestForm extends Model
         $this->destination = new PlaceName($destination);
     }
 
-    public function setStartDateTime($startDateTime)
-    {
-        $this->startDateTime = new DateTime($startDateTime);
-    }
-
-    public function setType($type)
-    {
-        $this->type = new Type($type);
-    }
-
     /**
      * @return DateTime
      */
@@ -70,11 +60,21 @@ class RequestForm extends Model
         return $this->startDateTime;
     }
 
+    public function setStartDateTime($startDateTime)
+    {
+        $this->startDateTime = new DateTime($startDateTime);
+    }
+
     /**
      * @return Type
      */
     public function getType()
     {
         return $this->type;
+    }
+
+    public function setType($type)
+    {
+        $this->type = new Type($type);
     }
 }
