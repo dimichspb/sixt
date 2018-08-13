@@ -37,7 +37,7 @@ class RequestController extends Controller
      * @param string $type
      * @return int Exit code
      */
-    public function actionQuotation($origin = null, $destination = null, $startDateTime = null, $type = Type::DISTANCE)
+    public function actionQuotations($origin = null, $destination = null, $startDateTime = null, $type = Type::DISTANCE)
     {
         if ($origin) {
             $this->requestForm->setOrigin($origin);

@@ -2,12 +2,16 @@
 namespace app\entities;
 
 use app\sdk\MyDriver\Offer;
+use yii\base\Arrayable;
+use yii\base\ArrayableTrait;
+use yii\base\Model;
 
-class Quotation
+class Quotation implements Arrayable
 {
     protected $commission;
     protected $offer;
 
+    use ArrayableTrait;
     /**
      * @var Price
      */
@@ -63,4 +67,21 @@ class Quotation
         return $this->vehicleClass;
     }
 
+    public function fields()
+    {
+        return [
+            'vehicleClass' => function (Quotation $quotation) {
+                return $quotation->vehicleClass->getValue();
+            },
+            'offerPrice' => function (Quotation $quotation) {
+                return $quotation->getOffer()->getPrice()->getValue();
+            },
+            'price' => function (Quotation $quotation) {
+                return $quotation->getPrice()->getValue();
+            },
+            'currency' => function (Quotation $quotation) {
+                return $quotation->getCurrency()->getValue();
+            }
+        ];
+    }
 }
