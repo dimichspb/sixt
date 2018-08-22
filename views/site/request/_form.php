@@ -7,7 +7,7 @@ use yii\bootstrap\Html;
 use yii\widgets\Pjax;
 
 ?>
-<?php $activeForm = \yii\bootstrap\ActiveForm::begin(['options' => ['data-pjax' => true]]) ?>
+<?php $activeForm = \yii\bootstrap\ActiveForm::begin(['action' => ['request'], 'options' => ['data-pjax' => true],]) ?>
 
 <div class="row row-eq-height">
     <div class="col-xs-12 col-md-10">
@@ -23,7 +23,7 @@ use yii\widgets\Pjax;
             </div>
         </div>
     </div>
-    <div class="col-xs-12 col-md-2 valign-middle">
+    <div class="col-xs-12 col-md-2 valign-middle text-right">
         <?= Html::submitButton('OK', ['class' => 'btn btn-success']); ?>
     </div>
 </div>

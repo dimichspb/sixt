@@ -18,7 +18,7 @@
                 [
                     'attribute' => 'offerPrice',
                     'value' => function (\app\entities\Quotation $quotation) {
-                        return $quotation->getOffer()->getPrice()->getValue();
+                        return $quotation->getOffer()->getPriceReduced()->getValue();
                     },
                     'format' => 'decimal',
                 ],

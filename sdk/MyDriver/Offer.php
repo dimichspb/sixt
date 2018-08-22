@@ -7,6 +7,8 @@ use app\sdk\MyDriver\entities\VehicleClass;
 
 class Offer extends Response
 {
+    const REDUCE_VALUE = 100;
+
     /**
      * @var VehicleClass
      */
@@ -16,6 +18,11 @@ class Offer extends Response
      * @var Price
      */
     protected $price;
+
+    /**
+     * @var Price
+     */
+    protected $reducedPrice;
 
     /**
      * @var Currency
@@ -32,6 +39,7 @@ class Offer extends Response
     {
         $this->vehicleClass = $vehicleClass;
         $this->price = $price;
+        $this->reducedPrice = new Price($price->getValue() / self::REDUCE_VALUE);
         $this->currency = $currency;
     }
 
@@ -49,6 +57,14 @@ class Offer extends Response
     public function getPrice()
     {
         return $this->price;
+    }
+
+    /**
+     * @return Price
+     */
+    public function getPriceReduced()
+    {
+        return $this->reducedPrice;
     }
 
     /**

@@ -6,11 +6,14 @@ use app\entities\DateTime;
 use app\entities\PlaceName;
 use app\entities\Type;
 use app\forms\RequestForm;
+use app\parsers\ParserInterface;
 use app\services\quotation\QuotationService;
+use Assert\Assertion;
 use Yii;
 use yii\base\Module;
 use yii\data\ArrayDataProvider;
 use yii\filters\AccessControl;
+use yii\helpers\FileHelper;
 use yii\web\Controller;
 use yii\web\Request;
 use yii\web\Response;
@@ -38,13 +41,19 @@ class SiteController extends Controller
      */
     protected $quotationService;
 
+    /**
+     * @var ParserInterface
+     */
+    protected $parser;
+
     public function __construct($id, Module $module, Request $request, Response $response, RequestForm $requestForm,
-                                QuotationService $quotationService, array $config = [])
+                                QuotationService $quotationService, ParserInterface $parser, array $config = [])
     {
         $this->request = $request;
         $this->response = $response;
         $this->requestForm = $requestForm;
         $this->quotationService = $quotationService;
+        $this->parser = $parser;
 
         parent::__construct($id, $module, $config);
     }
@@ -70,6 +79,7 @@ class SiteController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'logout' => ['post'],
+                    'request' => ['post'],
                 ],
             ],
         ];
@@ -95,9 +105,15 @@ class SiteController extends Controller
      * Displays homepage.
      *
      * @return string
-     * @throws \yii\base\InvalidConfigException
      */
     public function actionIndex()
+    {
+        return $this->render('index', [
+            'requestForm' => $this->requestForm,
+        ]);
+    }
+
+    public function actionRequest()
     {
         try {
             $requestParams = $this->request->post($this->requestForm->formName());
@@ -120,7 +136,7 @@ class SiteController extends Controller
                 $quotations = [];
             }
         } catch (\Exception $exception) {
-            return $this->render('index', [
+            return $this->render('request', [
                 'requestForm' => $this->requestForm,
                 'exception' => $exception,
             ]);
@@ -130,7 +146,7 @@ class SiteController extends Controller
             'allModels' => $quotations,
         ]);
 
-        return $this->render('index', [
+        return $this->render('request', [
             'requestForm' => $this->requestForm,
             'dataProvider' => $dataProvider,
         ]);
@@ -143,6 +159,21 @@ class SiteController extends Controller
      */
     public function actionAbout()
     {
-        return $this->render('about');
+        $content = $this->getFileContent('@app/README.md');
+
+        return $this->render('about', [
+            'content' => $this->parser->parse($content),
+        ]);
+    }
+
+    protected function getFileContent($filePath)
+    {
+        $filePath = \Yii::getAlias($filePath);
+
+        $filePath = FileHelper::normalizePath($filePath);
+
+        Assertion::file($filePath);
+
+        return file_get_contents($filePath);
     }
 }

@@ -36,6 +36,7 @@ class RequestController extends Controller
      * @param null $startDateTime
      * @param string $type
      * @return int Exit code
+     * @throws \Psr\Http\Client\ClientException
      */
     public function actionQuotations($origin = null, $destination = null, $startDateTime = null, $type = Type::DISTANCE)
     {
@@ -67,7 +68,7 @@ class RequestController extends Controller
             foreach ($quotations as $quotation) {
                 $this->stdout(
                     'Vehicle class: ' . $quotation->getVehicleClass()->getValue() .
-                    ', offer price: ' . $this->formatter->asDecimal($quotation->getOffer()->getPrice()->getValue()) .
+                    ', offer price: ' . $this->formatter->asDecimal($quotation->getOffer()->getPriceReduced()->getValue()) .
                     ', price: ' . $this->formatter->asDecimal($quotation->getPrice()->getValue()) .
                     ', currency: ' . $quotation->getCurrency()->getValue() . PHP_EOL
                 );

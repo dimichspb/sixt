@@ -52,7 +52,7 @@ class Quotation implements Arrayable
      */
     protected function updatePrice()
     {
-        $this->price = new Price($this->addCommission($this->offer->getPrice(), $this->commission));
+        $this->price = new Price($this->addCommission($this->offer->getPriceReduced(), $this->commission));
         $this->currency = new Currency($this->offer->getCurrency()->getValue());
         $this->vehicleClass = new VehicleClass($this->offer->getVehicleClass()->getValue());
     }

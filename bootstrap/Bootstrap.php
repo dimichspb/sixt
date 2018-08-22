@@ -6,6 +6,7 @@ use app\entities\DateTime;
 use app\entities\PlaceName;
 use app\entities\Type;
 use app\forms\RequestForm;
+use app\parsers\MarkdownParser;
 use app\sdk\MyDriver\entities\ApiKey;
 use app\sdk\MyDriver\http\HttpClient;
 use app\sdk\MyDriver\http\HttpClientInterface;
@@ -56,5 +57,7 @@ class Bootstrap implements BootstrapInterface
         $container->set(HttpClientInterface::class, HttpClient::class);
 
         $container->set(ParserInterface::class, JsonParser::class);
+
+        $container->set(\app\parsers\ParserInterface::class, MarkdownParser::class);
     }
 }
