@@ -1,7 +1,7 @@
 <?php
 namespace app\tests\unit\entities;
 
-use app\entities\BaseDateTime;
+use app\entities\base\BaseDateTime;
 use Codeception\Test\Unit;
 
 class BaseDateTimeTest extends Unit

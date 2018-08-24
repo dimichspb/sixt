@@ -2,6 +2,7 @@
 namespace app\sdk\MyDriver\entities;
 
 use Assert\Assertion;
+use app\sdk\MyDriver\entities\base\BaseString;
 
 class VehicleClass extends BaseString
 {

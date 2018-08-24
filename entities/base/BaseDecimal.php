@@ -1,5 +1,5 @@
 <?php
-namespace app\entities;
+namespace app\entities\base;
 
 abstract class BaseDecimal extends BaseFloat
 {

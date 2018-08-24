@@ -1,7 +1,7 @@
 <?php
 namespace app\sdk\MyDriver\tests\unit\entities;
 
-use app\sdk\MyDriver\entities\BaseDateTime;
+use app\sdk\MyDriver\entities\base\BaseDateTime;
 use Codeception\Test\Unit;
 
 class BaseDateTimeTest extends Unit

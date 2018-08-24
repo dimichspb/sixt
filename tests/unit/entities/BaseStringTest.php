@@ -1,7 +1,7 @@
 <?php
 namespace app\tests\unit\entities;
 
-use app\entities\BaseString;
+use app\entities\base\BaseString;
 use Assert\AssertionFailedException;
 use Codeception\Test\Unit;
 

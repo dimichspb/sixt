@@ -1,6 +1,7 @@
 <?php
-namespace app\entities;
+namespace app\entities\VehicleClass;
 
+use app\entities\base\BaseString;
 use Assert\Assertion;
 
 class VehicleClass extends BaseString

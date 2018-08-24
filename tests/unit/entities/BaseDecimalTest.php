@@ -1,7 +1,7 @@
 <?php
 namespace app\tests\unit\entities;
 
-use app\entities\BaseDecimal;
+use app\entities\base\BaseDecimal;
 use Assert\AssertionFailedException;
 use Codeception\Test\Unit;
 

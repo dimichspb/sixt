@@ -1,9 +1,9 @@
 <?php
-namespace app\sdk\MyDriver\entities;
+namespace app\entities\base;
 
 use Assert\Assertion;
 
-abstract class BaseString extends BaseEntity
+abstract class BaseFloat extends BaseEntity
 {
     /**
      * @param $value
@@ -12,7 +12,6 @@ abstract class BaseString extends BaseEntity
      */
     public function assert($value)
     {
-        Assertion::string($value);
+        Assertion::numeric($value);
     }
-
 }

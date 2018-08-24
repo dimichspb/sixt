@@ -1,7 +1,7 @@
 <?php
 namespace app\sdk\MyDriver\tests\unit\entities;
 
-use app\sdk\MyDriver\entities\BaseString;
+use app\sdk\MyDriver\entities\base\BaseString;
 use Assert\AssertionFailedException;
 use Codeception\Test\Unit;
 

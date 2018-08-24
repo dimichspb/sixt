@@ -1,7 +1,7 @@
 <?php
 namespace app\sdk\MyDriver\tests\unit\entities;
 
-use app\sdk\MyDriver\entities\BaseFloat;
+use app\sdk\MyDriver\entities\base\BaseFloat;
 use Assert\AssertionFailedException;
 use Codeception\Test\Unit;
 

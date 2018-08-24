@@ -1,7 +1,7 @@
 <?php
 namespace app\sdk\MyDriver\tests\unit\entities;
 
-use app\sdk\MyDriver\entities\BaseDecimal;
+use app\sdk\MyDriver\entities\base\BaseDecimal;
 use Assert\AssertionFailedException;
 use Codeception\Test\Unit;
 

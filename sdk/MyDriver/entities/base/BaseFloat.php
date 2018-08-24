@@ -1,5 +1,5 @@
 <?php
-namespace app\entities;
+namespace app\sdk\MyDriver\entities\base;
 
 use Assert\Assertion;
 

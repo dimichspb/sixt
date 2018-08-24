@@ -2,7 +2,7 @@
 
 namespace app\tests\unit\entities;
 
-use app\entities\BaseBool;
+use app\entities\base\BaseBool;
 use Assert\Assert;
 use Assert\Assertion;
 use Assert\AssertionFailedException;

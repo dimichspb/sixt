@@ -1,7 +1,7 @@
 <?php
 namespace app\forms\validators;
 
-use app\entities\BaseEntity;
+use app\entities\base\BaseEntity;
 
 class StringValidator extends \yii\validators\StringValidator
 {

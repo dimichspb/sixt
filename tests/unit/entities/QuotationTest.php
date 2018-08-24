@@ -20,9 +20,9 @@ class QuotationTest extends Unit
 
         $quotation = new Quotation($offer, $this->getCommissionMock());
 
-        expect($quotation->getVehicleClass()->getValue())->equals(\app\entities\VehicleClass::ECONOMY_CLASS);
+        expect($quotation->getVehicleClass()->getValue())->equals(\app\entities\VehicleClass\VehicleClass::ECONOMY_CLASS);
         expect($quotation->getOffer())->equals($offer);
-        expect($quotation->getPrice()->getValue())->equals(200);
+        expect($quotation->getPrice()->getValue())->equals(20);
         expect($quotation->getCurrency()->getValue())->equals(\app\entities\Currency::EUR);
     }
 
@@ -37,9 +37,14 @@ class QuotationTest extends Unit
         $vehicleClass->method('getValue')->willReturn(VehicleClass::ECONOMY_CLASS);
 
         $price = $this->getMockBuilder(Price::class)->setConstructorArgs([
-            'value' => 100
+            'value' => 1000
         ])->getMock();
-        $price->method('getValue')->willReturn(100);
+        $price->method('getValue')->willReturn(1000);
+
+        $priceReduced = $this->getMockBuilder(Price::class)->setConstructorArgs([
+            'value' => 10
+        ])->getMock();
+        $priceReduced->method('getValue')->willReturn(10);
 
         $currency = $this->getMockBuilder(Currency::class)->setConstructorArgs([
             'value' => Currency::EUR
@@ -52,6 +57,7 @@ class QuotationTest extends Unit
             'currency' => $currency,
         ])->getMock();
         $offer->method('getPrice')->willReturn($price);
+        $offer->method('getPriceReduced')->willReturn($priceReduced);
         $offer->method('getCurrency')->willReturn($currency);
         $offer->method('getVehicleClass')->willReturn($vehicleClass);
 

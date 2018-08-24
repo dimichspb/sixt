@@ -1,7 +1,7 @@
 <?php
 namespace app\tests\unit\entities;
 
-use app\entities\BaseEntity;
+use app\entities\base\BaseEntity;
 use Codeception\Test\Unit;
 
 class BaseEntityTest extends Unit

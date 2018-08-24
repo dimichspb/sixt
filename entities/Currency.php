@@ -2,6 +2,7 @@
 namespace app\entities;
 
 use Assert\Assertion;
+use app\entities\base\BaseString;
 
 class Currency extends BaseString
 {

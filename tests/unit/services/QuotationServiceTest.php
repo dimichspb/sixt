@@ -7,7 +7,7 @@ use app\entities\DateTime;
 use app\entities\PlaceName;
 use app\entities\Quotation;
 use app\entities\Type;
-use app\entities\VehicleClass;
+use app\entities\VehicleClass\VehicleClass;
 use app\forms\RequestForm;
 use app\sdk\MyDriver\endpoints\Offers;
 use app\sdk\MyDriver\entities\ApiKey;
@@ -33,8 +33,8 @@ class QuotationServiceTest extends Unit
         expect($quotations)->containsOnlyInstancesOf(Quotation::class);
         foreach ($quotations as $quotation) {
             expect($quotation->getCurrency()->getValue())->equals(Currency::EUR);
-            expect($quotation->getOffer()->getPrice()->getValue())->equals(100);
-            expect($quotation->getPrice()->getValue())->equals(200);
+            expect($quotation->getOffer()->getPrice()->getValue())->equals(1000);
+            expect($quotation->getPrice()->getValue())->equals(20);
             expect($quotation->getVehicleClass()->getValue())->equals(VehicleClass::ECONOMY_CLASS);
         }
     }
@@ -54,9 +54,14 @@ class QuotationServiceTest extends Unit
         $vehicleClass->method('getValue')->willReturn(\app\sdk\MyDriver\entities\VehicleClass::ECONOMY_CLASS);
 
         $price = $this->getMockBuilder(\app\sdk\MyDriver\entities\Price::class)->setConstructorArgs([
-            'value' => 100,
+            'value' => 1000,
         ])->getMock();
-        $price->method('getValue')->willReturn(100);
+        $price->method('getValue')->willReturn(1000);
+
+        $priceReduced = $this->getMockBuilder(\app\sdk\MyDriver\entities\Price::class)->setConstructorArgs([
+            'value' => 10,
+        ])->getMock();
+        $priceReduced->method('getValue')->willReturn(10);
 
         $currency = $this->getMockBuilder(\app\sdk\MyDriver\entities\Currency::class)->setConstructorArgs([
             'value' => \app\sdk\MyDriver\entities\Currency::EUR,
@@ -71,6 +76,7 @@ class QuotationServiceTest extends Unit
         ])->getMock();
         $offer->method('getVehicleClass')->willReturn($vehicleClass);
         $offer->method('getPrice')->willReturn($price);
+        $offer->method('getPriceReduced')->willReturn($priceReduced);
         $offer->method('getCurrency')->willReturn($currency);
 
         $offers = $this->getMockBuilder(Offers::class)->setConstructorArgs([

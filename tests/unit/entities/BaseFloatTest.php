@@ -1,7 +1,7 @@
 <?php
 namespace app\tests\unit\entities;
 
-use app\entities\BaseFloat;
+use app\entities\base\BaseFloat;
 use Assert\AssertionFailedException;
 use Codeception\Test\Unit;
 

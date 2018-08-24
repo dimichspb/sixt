@@ -1,7 +1,7 @@
 <?php
 namespace app\sdk\MyDriver\tests\unit\entities;
 
-use app\sdk\MyDriver\entities\BaseEntity;
+use app\sdk\MyDriver\entities\base\BaseEntity;
 use Codeception\Test\Unit;
 
 class BaseEntityTest extends Unit

@@ -1,7 +1,5 @@
 <?php
-namespace app\sdk\MyDriver\entities;
-
-use Assert\Assertion;
+namespace app\entities\base;
 
 abstract class BaseDateTime extends BaseEntity
 {
@@ -10,6 +8,6 @@ abstract class BaseDateTime extends BaseEntity
      */
     public function assert($value)
     {
-        //Assertion::date($value, 'c');
+
     }
 }

@@ -1,7 +1,7 @@
 <?php
 namespace app\tests\unit\entities;
 
-use app\entities\VehicleClass;
+use app\entities\VehicleClass\VehicleClass;
 use Assert\AssertionFailedException;
 use Codeception\Test\Unit;
 

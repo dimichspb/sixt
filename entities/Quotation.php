@@ -5,6 +5,7 @@ use app\sdk\MyDriver\Offer;
 use yii\base\Arrayable;
 use yii\base\ArrayableTrait;
 use yii\base\Model;
+use app\entities\VehicleClass\VehicleClass;
 
 class Quotation implements Arrayable
 {

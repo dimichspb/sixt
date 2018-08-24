@@ -1,7 +1,7 @@
 <?php
 namespace app\tests\unit\entities;
 
-use app\entities\BaseInteger;
+use app\entities\base\BaseInteger;
 use Assert\AssertionFailedException;
 use Codeception\Test\Unit;
 

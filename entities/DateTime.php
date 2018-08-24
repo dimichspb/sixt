@@ -1,6 +1,8 @@
 <?php
 namespace app\entities;
 
+use app\entities\base\BaseDateTime;
+
 class DateTime extends BaseDateTime
 {
     /**
@@ -9,7 +11,7 @@ class DateTime extends BaseDateTime
      */
     public function __construct($value = null)
     {
-        $value = (new \DateTime($value))->format('c');
+        $value = (new \DateTime($value))->format('Y-m-d H:i');
         parent::__construct($value);
     }
 

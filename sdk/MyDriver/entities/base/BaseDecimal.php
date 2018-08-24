@@ -1,5 +1,5 @@
 <?php
-namespace app\sdk\MyDriver\entities;
+namespace app\sdk\MyDriver\entities\base;
 
 abstract class BaseDecimal extends BaseFloat
 {
