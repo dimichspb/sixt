@@ -4,7 +4,6 @@ namespace app\models\commission\dto;
 class CommissionCreateDto
 {
     public $id;
-    public $name;
-    public $title;
-    public $example;
+    public $created;
+    public $percent;
 }
