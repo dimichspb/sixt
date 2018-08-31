@@ -1,11 +1,16 @@
 <?php
 namespace app\services\quotation;
 
-use app\entities\Commission;
-use app\entities\Quotation;
+use app\models\commission\Commission;
+use app\events\dispatchers\EventDispatcherInterface;
+use app\models\quotation\Quotation;
 use app\forms\RequestForm;
+use app\models\vehicleClass\Name;
+use app\sdk\MyDriver\entities\VehicleClass;
 use app\sdk\MyDriver\MyDriver;
 use app\sdk\MyDriver\OffersRequest;
+use app\services\commission\CommissionService;
+use app\services\vehicleClass\VehicleClassService;
 
 class QuotationService
 {
@@ -15,19 +20,34 @@ class QuotationService
     protected $myDriver;
 
     /**
-     * @var Commission
+     * @var CommissionService
      */
-    protected $commission;
+    protected $commissionService;
+
+    /**
+     * @var VehicleClassService
+     */
+    protected $vehicleClassService;
+
+    /**
+     * @var EventDispatcherInterface
+     */
+    protected $eventDispatcher;
 
     /**
      * QuotationService constructor.
      * @param MyDriver $myDriver
-     * @param Commission $commission
+     * @param CommissionService $commissionService
+     * @param VehicleClassService $vehicleClassService
+     * @param EventDispatcherInterface $eventDispatcher
      */
-    public function __construct(MyDriver $myDriver, Commission $commission)
+    public function __construct(MyDriver $myDriver, CommissionService $commissionService, VehicleClassService $vehicleClassService,
+                                EventDispatcherInterface $eventDispatcher)
     {
         $this->myDriver = $myDriver;
-        $this->commission = $commission;
+        $this->commissionService = $commissionService;
+        $this->vehicleClassService = $vehicleClassService;
+        $this->eventDispatcher = $eventDispatcher;
     }
 
     /**
@@ -46,8 +66,11 @@ class QuotationService
             new \app\sdk\MyDriver\entities\Type($requestForm->getType()->getValue())
         ));
 
+        $commission = $this->commissionService->getLast();
+
         foreach ($offers as $offer) {
-            $quotations[] = new Quotation($offer, $this->commission);
+            $vehicleClass = $this->vehicleClassService->getByName(new Name($offer->getVehicleClass()->getValue()));
+            $quotations[] = new Quotation($offer, $commission, $vehicleClass);
         }
 
         return $quotations;

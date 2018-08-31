@@ -1,7 +1,6 @@
 <?php
 namespace app\bootstrap;
 
-use app\entities\Commission;
 use app\entities\DateTime;
 use app\entities\PlaceName;
 use app\entities\Type;
@@ -12,6 +11,7 @@ use app\sdk\MyDriver\http\HttpClient;
 use app\sdk\MyDriver\http\HttpClientInterface;
 use app\sdk\MyDriver\parsers\JsonParser;
 use app\sdk\MyDriver\parsers\ParserInterface;
+use app\services\commission\CommissionService;
 use yii\base\BootstrapInterface;
 
 class Bootstrap implements BootstrapInterface
@@ -35,10 +35,9 @@ class Bootstrap implements BootstrapInterface
         $defaultStartDateTime = date('c', time() + $this->timeout * 60);
         $defaultType = Type::DISTANCE;
 
-        /**
-         * Define default Commission value in percents
-         */
-        $container->set(Commission::class, new Commission(20));
+        $container->set(CommissionService::class, CommissionService::class);
+        $container->set(HistoryService::class, HistoryService::class);
+        $container->set(VehicleClassService::class, VehicleClassService::class);
 
         /**
          * Define ApiKey to access to MyDriver (not used)

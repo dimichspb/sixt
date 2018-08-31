@@ -1,15 +1,16 @@
 <?php
-namespace app\entities\VehicleClass;
+namespace app\models\vehicleClass;
 
 use app\entities\base\BaseString;
 use Assert\Assertion;
 
-class VehicleClass extends BaseString
+class Name extends BaseString
 {
     const ECONOMY_CLASS = 'ECONOMY_CLASS';
     const FIRST_CLASS = 'FIRST_CLASS';
     const BUSINESS_CLASS = 'BUSINESS_CLASS';
     const BUSINESS_VAN = 'BUSINESS_VAN';
+
 
     /**
      * @param $value

@@ -75,7 +75,8 @@ class RequestController extends Controller
     /**
      * Quotations method result
      *
-     * @return \app\entities\Quotation[]
+     * @return \app\entities\Quotation\Quotation[]
+     * @throws \Psr\Http\Client\ClientException
      */
     public function actionQuotations()
     {

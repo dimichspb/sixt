@@ -22,7 +22,10 @@
         "beberlei/assert": "^3.0",
         "psr/http-client": "^0.1.0",
         "erusev/parsedown": "^1.7",
-        "2amigos/yii2-date-time-picker-widget": "~1.0"
+        "2amigos/yii2-date-time-picker-widget": "~1.0",
+        "doctrine/orm": "^2.6",
+        "ramsey/uuid": "^3.8",
+        "easyframework/collections": "^7.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

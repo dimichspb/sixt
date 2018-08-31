@@ -1,14 +1,19 @@
 <?php
-namespace app\entities;
+namespace app\models\quotation;
 
+use app\models\commission\Commission;
+use app\entities\Currency;
+use app\entities\Price;
+use app\events\EventTrait;
 use app\sdk\MyDriver\Offer;
 use yii\base\Arrayable;
 use yii\base\ArrayableTrait;
-use yii\base\Model;
-use app\entities\VehicleClass\VehicleClass;
+use app\models\VehicleClass\VehicleClass;
 
 class Quotation implements Arrayable
 {
+    use ArrayableTrait, EventTrait;
+
     /**
      * @var Commission
      */
@@ -18,8 +23,6 @@ class Quotation implements Arrayable
      * @var Offer
      */
     protected $offer;
-
-    use ArrayableTrait;
     /**
      * @var Price
      */
@@ -39,23 +42,15 @@ class Quotation implements Arrayable
      * Quotation constructor.
      * @param Offer $offer
      * @param Commission $commission
+     * @param VehicleClass $vehicleClass
      */
-    public function __construct(Offer $offer, Commission $commission)
+    public function __construct(Offer $offer, Commission $commission, VehicleClass $vehicleClass)
     {
         $this->offer = $offer;
         $this->commission = $commission;
-
-        $this->updatePrice();
-    }
-
-    /**
-     * Updates prices based on offer and commission
-     */
-    protected function updatePrice()
-    {
-        $this->price = new Price($this->addCommission($this->offer->getPriceReduced(), $this->commission));
+        $this->vehicleClass = $vehicleClass;
         $this->currency = new Currency($this->offer->getCurrency()->getValue());
-        $this->vehicleClass = new VehicleClass($this->offer->getVehicleClass()->getValue());
+        $this->price = new Price($this->addCommission($this->offer->getPriceReduced(), $this->commission));
     }
 
     /**
@@ -65,7 +60,7 @@ class Quotation implements Arrayable
      */
     protected function addCommission(\app\sdk\MyDriver\entities\Price $price, Commission $commission)
     {
-        return $price->getValue() + ($price->getValue() * $commission->getValue() / 100);
+        return $price->getValue() + ($price->getValue() * $commission->getPercent()->getValue() / 100);
     }
 
     /**
@@ -74,6 +69,14 @@ class Quotation implements Arrayable
     public function getOffer()
     {
         return $this->offer;
+    }
+
+    /**
+     * @return Commission
+     */
+    public function getCommission()
+    {
+        return $this->commission;
     }
 
     /**
@@ -108,7 +111,7 @@ class Quotation implements Arrayable
     {
         return [
             'vehicleClass' => function (Quotation $quotation) {
-                return $quotation->vehicleClass->getValue();
+                return $quotation->vehicleClass;
             },
             'offerPrice' => function (Quotation $quotation) {
                 return $quotation->getOffer()->getPrice()->getValue();
