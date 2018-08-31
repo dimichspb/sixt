@@ -1,10 +1,9 @@
 <?php
-namespace app\tests\unit\services;
+namespace app\tests\unit\services\quotation;
 
 use app\events\dispatchers\DummyEventDispatcher;
 use app\events\dispatchers\EventDispatcherInterface;
 use app\models\commission\Commission;
-use app\entities\Currency;
 use app\entities\DateTime;
 use app\entities\PlaceName;
 use app\models\commission\Created;
@@ -31,7 +30,6 @@ use app\sdk\MyDriver\parsers\JsonParser;
 use app\services\commission\CommissionService;
 use app\services\quotation\QuotationService;
 use app\services\vehicleClass\VehicleClassService;
-use Codeception\Stub;
 use Codeception\Test\Unit;
 
 class QuotationServiceTest extends Unit

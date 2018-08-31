@@ -1,5 +1,5 @@
 <?php
-namespace app\tests\unit\entities;
+namespace app\tests\unit\entities\base;
 
 use app\entities\base\BaseEntity;
 use Codeception\Test\Unit;

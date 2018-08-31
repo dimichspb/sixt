@@ -1,9 +1,7 @@
 <?php
 namespace app\models\history;
 
-use app\entities\DateTime;
-
-class DateTime extends DateTime
+class DateTime extends \app\entities\DateTime
 {
 
 }

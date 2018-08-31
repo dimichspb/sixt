@@ -1,11 +1,11 @@
 <?php
-namespace app\tests\unit\entities;
+namespace app\tests\unit\entities\base;
 
-use app\entities\base\BaseFloat;
+use app\entities\base\BaseInteger;
 use Assert\AssertionFailedException;
 use Codeception\Test\Unit;
 
-class BaseFloatTest extends Unit
+class BaseIntegerTest extends Unit
 {
     /**
      *
@@ -13,28 +13,14 @@ class BaseFloatTest extends Unit
     public function testAssertSuccess()
     {
         $mock = $this
-            ->getMockBuilder(BaseFloat::class)
-            ->setConstructorArgs(['value' => 10.10])
-            ->getMockForAbstractClass();
-
-        expect($mock->getValue())->equals(10.10);
-
-        $mock = $this
-            ->getMockBuilder(BaseFloat::class)
-            ->setConstructorArgs(['value' => 10.00])
-            ->getMockForAbstractClass();
-
-        expect($mock->getValue())->equals(10.00);
-
-        $mock = $this
-            ->getMockBuilder(BaseFloat::class)
+            ->getMockBuilder(BaseInteger::class)
             ->setConstructorArgs(['value' => 10])
             ->getMockForAbstractClass();
 
         expect($mock->getValue())->equals(10);
 
         $mock = $this
-            ->getMockBuilder(BaseFloat::class)
+            ->getMockBuilder(BaseInteger::class)
             ->setConstructorArgs(['value' => -10])
             ->getMockForAbstractClass();
 
@@ -49,7 +35,14 @@ class BaseFloatTest extends Unit
         $this->expectException(AssertionFailedException::class);
 
         $mock = $this
-            ->getMockBuilder(BaseFloat::class)
+            ->getMockBuilder(BaseInteger::class)
+            ->setConstructorArgs(['value' => 10.10])
+            ->getMockForAbstractClass();
+
+        $this->expectException(AssertionFailedException::class);
+
+        $mock = $this
+            ->getMockBuilder(BaseInteger::class)
             ->setConstructorArgs(['value' => 'true'])
             ->getMockForAbstractClass();
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\tests\unit\entities;
+namespace app\tests\unit\entities\base;
 
 use app\entities\base\BaseBool;
 use Assert\Assert;

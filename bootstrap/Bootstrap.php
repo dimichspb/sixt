@@ -12,6 +12,8 @@ use app\sdk\MyDriver\http\HttpClientInterface;
 use app\sdk\MyDriver\parsers\JsonParser;
 use app\sdk\MyDriver\parsers\ParserInterface;
 use app\services\commission\CommissionService;
+use app\services\history\HistoryService;
+use app\services\vehicleClass\VehicleClassService;
 use yii\base\BootstrapInterface;
 
 class Bootstrap implements BootstrapInterface
@@ -34,6 +36,8 @@ class Bootstrap implements BootstrapInterface
         $defaultDestination = 'Munich Airport';
         $defaultStartDateTime = date('c', time() + $this->timeout * 60);
         $defaultType = Type::DISTANCE;
+
+
 
         $container->set(CommissionService::class, CommissionService::class);
         $container->set(HistoryService::class, HistoryService::class);

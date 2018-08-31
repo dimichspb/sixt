@@ -1,11 +1,11 @@
 <?php
-namespace app\tests\unit\entities;
+namespace app\tests\unit\entities\base;
 
-use app\entities\base\BaseString;
+use app\entities\base\BaseId;
 use Assert\AssertionFailedException;
 use Codeception\Test\Unit;
 
-class BaseStringTest extends Unit
+class BaseIdTest extends Unit
 {
     /**
      *
@@ -13,11 +13,11 @@ class BaseStringTest extends Unit
     public function testAssertSuccess()
     {
         $mock = $this
-            ->getMockBuilder(BaseString::class)
-            ->setConstructorArgs(['value' => 'string'])
+            ->getMockBuilder(BaseId::class)
+            ->setConstructorArgs(['value' => 'id'])
             ->getMockForAbstractClass();
 
-        expect($mock->getValue())->equals('string');
+        expect($mock->getValue())->equals('id');
     }
 
     /**
@@ -28,14 +28,14 @@ class BaseStringTest extends Unit
         $this->expectException(AssertionFailedException::class);
 
         $mock = $this
-            ->getMockBuilder(BaseString::class)
-            ->setConstructorArgs(['value' => 10])
+            ->getMockBuilder(BaseId::class)
+            ->setConstructorArgs(['value' => '00112233445566778899'])
             ->getMockForAbstractClass();
 
         $this->expectException(AssertionFailedException::class);
 
         $mock = $this
-            ->getMockBuilder(BaseString::class)
+            ->getMockBuilder(BaseId::class)
             ->setConstructorArgs(['value' => true])
             ->getMockForAbstractClass();
     }
@@ -46,11 +46,11 @@ class BaseStringTest extends Unit
     public function testToStringSuccess()
     {
         $mock = $this
-            ->getMockBuilder(BaseString::class)
-            ->setConstructorArgs(['value' => 'string'])
+            ->getMockBuilder(BaseId::class)
+            ->setConstructorArgs(['value' => 'id'])
             ->getMockForAbstractClass();
 
-        expect($mock === 'string');
+        expect($mock === 'id');
     }
 
 }
