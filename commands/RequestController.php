@@ -67,7 +67,7 @@ class RequestController extends Controller
             $this->stdout('Results: ' . PHP_EOL);
             foreach ($quotations as $quotation) {
                 $this->stdout(
-                    'Vehicle class: ' . $quotation->getVehicleClass()->getValue() .
+                    'Vehicle class: ' . $quotation->getVehicleClass()->getTitle()->getValue() .
                     ', offer price: ' . $this->formatter->asDecimal($quotation->getOffer()->getPriceReduced()->getValue()) .
                     ', price: ' . $this->formatter->asDecimal($quotation->getPrice()->getValue()) .
                     ', currency: ' . $quotation->getCurrency()->getValue() . PHP_EOL

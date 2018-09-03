@@ -47,6 +47,19 @@ bootstrap\Bootstrap.php
 ```
 apachectl restart
 ```
+
+4. Configure database connection:
+
+```
+config\db.php
+```
+
+5. Apply migrations:
+
+```
+php yii migrate
+```
+
 ## Usage
 
 1. Web GUI
@@ -76,9 +89,9 @@ codecept run
 ## TODOs
 
 1. Implement GoogleMapWidget
-2. Add DateTimeWidget to the request form
-3. Implement database storage for Commissions
-4. Implement history of requests
+2. ~~Add DateTimeWidget to the request form~~
+3. ~~Implement database storage for Commissions~~
+4. ~~Implement history of requests~~
 5. Implement cache
 6. Implement authentication
 7. Implement authorization

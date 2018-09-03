@@ -29,21 +29,37 @@ class m180824_113701_FillVehicleClassTable extends Migration
             'example' => 'e.g. VW CC, Toyota Prius, Skoda Superb',
         ]
     ];
-    /**
-     * {@inheritdoc}
-     */
-    public function safeUp()
+
+    protected $service;
+
+    public function __construct(\app\services\vehicleClass\VehicleClassService $service,
+                                array $config = [])
     {
-        $this->batchInsert('vehicle_class', ['name', 'title', 'example'], $this->data);
+        $this->service = $service;
+        parent::__construct($config);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function safeDown()
+    public function up()
     {
         foreach ($this->data as $item) {
-            $this->delete('vehicle_class', ['name' => $item['name']]);
+            $vehicleClass = $this->service->createFromArray($item);
+            $this->service->save($vehicleClass);
+        }
+
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function down()
+    {
+        $vehicleClasses = $this->service->all();
+
+        foreach ($vehicleClasses as $vehicleClass) {
+            $this->service->delete($vehicleClass);
         }
     }
 

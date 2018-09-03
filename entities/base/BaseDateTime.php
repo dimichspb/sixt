@@ -10,4 +10,9 @@ abstract class BaseDateTime extends BaseEntity
     {
 
     }
+
+    public function __toString()
+    {
+
+    }
 }

@@ -3,23 +3,23 @@
 use yii\db\Migration;
 
 /**
- * Class m180824_113651_CreateVehicleClassTable
+ * Class m180903_104204_CreateCommissionTable
  */
-class m180824_113651_CreateVehicleClassTable extends Migration
+class m180903_104204_CreateCommissionTable extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
-        $this->createTable('vehicle_class', [
+        $this->createTable('commission', [
             'id' => $this->string(36)->notNull(),
-            'name' => $this->string()->unique()->notNull(),
-            'title' => $this->string()->notNull(),
-            'example' => $this->string()->notNull(),
+            'created_at' => $this->string()->notNull(),
+            'percent' => $this->decimal(2),
         ]);
+
         if ($this->db->driverName === 'mysql' || $this->db->driverName === 'pgsql') {
-            $this->addPrimaryKey('pk_vehicle_class', 'vehicle_class', 'id');
+            $this->addPrimaryKey('pk_commission', 'commission', 'id');
         }
     }
 
@@ -28,7 +28,7 @@ class m180824_113651_CreateVehicleClassTable extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('vehicle_class');
+        $this->dropTable('commission');
     }
 
     /*
@@ -40,7 +40,7 @@ class m180824_113651_CreateVehicleClassTable extends Migration
 
     public function down()
     {
-        echo "m180824_113651_CreateVehicleClassTable cannot be reverted.\n";
+        echo "m180903_104204_CreateCommissionTable cannot be reverted.\n";
 
         return false;
     }

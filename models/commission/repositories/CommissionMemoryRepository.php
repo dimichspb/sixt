@@ -1,7 +1,6 @@
 <?php
 namespace app\models\commission\repositories;
 
-use app\models\commission\Name;
 use app\models\commission\repositories\CommissionRepositoryInterface;
 use app\models\commission\Commission;
 use app\models\commission\Id;
@@ -79,7 +78,7 @@ class CommissionMemoryRepository implements CommissionRepositoryInterface
         try {
             $id = new Id(Uuid::uuid4()->toString());
         } catch (\Exception $exception) {
-            throw new RepositoryException();
+            throw new RepositoryException($exception->getMessage(), $exception->getCode(), $exception);
         }
 
         return $id;

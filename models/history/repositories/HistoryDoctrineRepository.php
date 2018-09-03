@@ -40,7 +40,7 @@ class HistoryDoctrineRepository implements HistoryRepositoryInterface
         try {
             $history = $this->entityRepository->find($id);
         } catch (\Exception $exception) {
-            throw new RepositoryException();
+            throw new RepositoryException($exception->getMessage(), $exception->getCode(), $exception);
         }
 
         return $history;
@@ -56,7 +56,7 @@ class HistoryDoctrineRepository implements HistoryRepositoryInterface
             $this->em->persist($history);
             $this->em->flush($history);
         } catch (\Exception $exception) {
-            throw new RepositoryException();
+            throw new RepositoryException($exception->getMessage(), $exception->getCode(), $exception);
         }
     }
 
@@ -69,7 +69,7 @@ class HistoryDoctrineRepository implements HistoryRepositoryInterface
         try {
             $this->em->flush($history);
         } catch (\Exception $exception) {
-            throw new RepositoryException();
+            throw new RepositoryException($exception->getMessage(), $exception->getCode(), $exception);
         }
     }
 
@@ -83,7 +83,7 @@ class HistoryDoctrineRepository implements HistoryRepositoryInterface
             $this->em->remove($history);
             $this->em->flush($history);
         } catch (\Exception $exception) {
-            throw new RepositoryException();
+            throw new RepositoryException($exception->getMessage(), $exception->getCode(), $exception);
         }
     }
 
@@ -95,7 +95,7 @@ class HistoryDoctrineRepository implements HistoryRepositoryInterface
         try {
             $id = new Id(Uuid::uuid4()->toString());
         } catch (\Exception $exception) {
-            throw new RepositoryException();
+            throw new RepositoryException($exception->getMessage(), $exception->getCode(), $exception);
         }
 
         return $id;
@@ -109,7 +109,7 @@ class HistoryDoctrineRepository implements HistoryRepositoryInterface
         try {
             $results = $this->entityRepository->findAll();
         } catch (\Exception $exception) {
-            throw new RepositoryException();
+            throw new RepositoryException($exception->getMessage(), $exception->getCode(), $exception);
         }
 
         return $results;

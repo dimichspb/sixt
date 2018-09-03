@@ -14,7 +14,7 @@ use app\models\quotation\Quotation;
                 [
                     'attribute' => 'vehicleClass',
                     'value' => function (Quotation $quotation) {
-                        return $quotation->getVehicleClass()->getValue();
+                        return $quotation->getVehicleClass()->getTitle()->getValue();
                     }
                 ],
                 [

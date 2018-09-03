@@ -1,7 +1,6 @@
 <?php
 namespace app\models\vehicleClass\repositories;
 
-use app\models\vehicleClass\events\VehicleClassFetchedEvent;
 use app\models\vehicleClass\Name;
 use app\models\vehicleClass\repositories\VehicleClassRepositoryInterface;
 use app\models\vehicleClass\VehicleClass;
@@ -26,7 +25,6 @@ class VehicleClassMemoryRepository implements VehicleClassRepositoryInterface
             return null;
         }
         $vehicleClass = clone $this->items[$id->getValue()];
-        $vehicleClass->recordEvent(new VehicleClassFetchedEvent($vehicleClass));
 
         return $vehicleClass;
     }
@@ -36,7 +34,7 @@ class VehicleClassMemoryRepository implements VehicleClassRepositoryInterface
         foreach ($this->items as $item) {
             if ($item->getName()->getValue() === $name->getValue()) {
                 $vehicleClass = clone $item;
-                $vehicleClass->recordEvent(new VehicleClassFetchedEvent($vehicleClass));
+                return $vehicleClass;
             }
         }
         return null;
@@ -86,7 +84,7 @@ class VehicleClassMemoryRepository implements VehicleClassRepositoryInterface
         try {
             $id = new Id(Uuid::uuid4()->toString());
         } catch (\Exception $exception) {
-            throw new RepositoryException();
+            throw new RepositoryException($exception->getMessage(), $exception->getCode(), $exception);
         }
 
         return $id;

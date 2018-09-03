@@ -1,0 +1,25 @@
+app\models\vehicleClass\VehicleClass:
+  type: entity
+  table: vehicle_class
+  id:
+    id:
+      id: true
+      column: id
+      type: Type\VehicleClass\Id
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: 'app\components\HashIdGenerator'
+  fields:
+    name:
+      column: name
+      type: Type\VehicleClass\Name
+      nullable: false
+    title:
+      column: title
+      type: Type\VehicleClass\Title
+      nullable: false
+    example:
+      column: example
+      type: Type\VehicleClass\Example
+      nullable: false

@@ -40,7 +40,7 @@ class CommissionDoctrineRepository implements CommissionRepositoryInterface
         try {
             $commission = $this->entityRepository->find($id);
         } catch (\Exception $exception) {
-            throw new RepositoryException();
+            throw new RepositoryException($exception->getMessage(), $exception->getCode(), $exception);
         }
 
         return $commission;
@@ -52,7 +52,7 @@ class CommissionDoctrineRepository implements CommissionRepositoryInterface
             $commissions = $this->entityRepository->findBy([], ['id' => 'DESC'], 1);
             $commission = end($commissions);
         } catch (\Exception $exception) {
-            throw new RepositoryException();
+            throw new RepositoryException($exception->getMessage(), $exception->getCode(), $exception);
         }
 
         return $commission;
@@ -67,7 +67,7 @@ class CommissionDoctrineRepository implements CommissionRepositoryInterface
             $this->em->persist($commission);
             $this->em->flush($commission);
         } catch (\Exception $exception) {
-            throw new RepositoryException();
+            throw new RepositoryException($exception->getMessage(), $exception->getCode(), $exception);
         }
     }
 
@@ -80,7 +80,7 @@ class CommissionDoctrineRepository implements CommissionRepositoryInterface
         try {
             $this->em->flush($commission);
         } catch (\Exception $exception) {
-            throw new RepositoryException();
+            throw new RepositoryException($exception->getMessage(), $exception->getCode(), $exception);
         }
     }
 
@@ -94,7 +94,7 @@ class CommissionDoctrineRepository implements CommissionRepositoryInterface
             $this->em->remove($commission);
             $this->em->flush($commission);
         } catch (\Exception $exception) {
-            throw new RepositoryException();
+            throw new RepositoryException($exception->getMessage(), $exception->getCode(), $exception);
         }
     }
 
@@ -106,7 +106,7 @@ class CommissionDoctrineRepository implements CommissionRepositoryInterface
         try {
             $id = new Id(Uuid::uuid4()->toString());
         } catch (\Exception $exception) {
-            throw new RepositoryException();
+            throw new RepositoryException($exception->getMessage(), $exception->getCode(), $exception);
         }
 
         return $id;
@@ -120,7 +120,7 @@ class CommissionDoctrineRepository implements CommissionRepositoryInterface
         try {
             $results = $this->entityRepository->findAll();
         } catch (\Exception $exception) {
-            throw new RepositoryException();
+            throw new RepositoryException($exception->getMessage(), $exception->getCode(), $exception);
         }
 
         return $results;

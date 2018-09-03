@@ -7,7 +7,7 @@ class BaseId extends BaseString
 {
     public function assert($value)
     {
-        Assertion::maxLength($value, 15);
+        Assertion::maxLength($value, 36);
 
         parent::assert($value);
     }

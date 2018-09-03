@@ -1,0 +1,45 @@
+app\models\history\History:
+  type: entity
+  table: history
+  id:
+    id:
+      id: true
+      column: id
+      type: Type\History\Id
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: 'app\components\HashIdGenerator'
+  fields:
+    created:
+      column: created_at
+      type: Type\History\Created
+      nullable: false
+    ip:
+      column: ip
+      type: Type\History\Ip
+      nullable: false
+    agent:
+      column: agent
+      type: Type\History\Agent
+      nullable: false
+    userId:
+      column: user_id
+      type: Type\History\UserId
+      nullable: false
+    origin:
+      column: origin
+      type: Type\History\Origin
+      nullable: false
+    destination:
+      column: destination
+      type: Type\History\Destination
+      nullable: false
+    dateTime:
+      column: datetime
+      type: Type\History\DateTime
+      nullable: false
+    type:
+      column: type
+      type: Type\History\Type
+      nullable: false

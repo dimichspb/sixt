@@ -1,0 +1,21 @@
+app\models\commission\Commission:
+  type: entity
+  table: commission
+  id:
+    id:
+      id: true
+      column: id
+      type: Type\Commission\Id
+      generator:
+        strategy: CUSTOM
+      customIdGenerator:
+        class: 'app\components\HashIdGenerator'
+  fields:
+    created:
+      column: created_at
+      type: Type\Commission\Created
+      nullable: false
+    percent:
+      column: percent
+      type: Type\Commission\Percent
+      nullable: false

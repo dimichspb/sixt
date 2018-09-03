@@ -1,9 +1,9 @@
 <?php
 namespace app\models\commission;
 
-use app\entities\base\BaseDateTime;
+use app\entities\DateTime;
 
-class Created extends BaseDateTime
+class Created extends DateTime
 {
 
 }

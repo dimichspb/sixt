@@ -13,18 +13,18 @@ class m180824_113713_CreateHistoryTable extends Migration
     public function safeUp()
     {
         $this->createTable('history', [
-            'id' => $this->primaryKey(),
-            'created_at' => $this
-                ->dateTime()
-                ->notNull(),
+            'id' => $this->string(36)->notNull(),
+            'created_at' => $this->string()->notNull(),
             'ip' => $this->string(15)->null(),
-            'browser' => $this->string()->null(),
+            'agent' => $this->string()->null(),
             'origin' => $this->string()->notNull(),
             'destination' => $this->string()->notNull(),
-            'start_datetime' => $this->dateTime()->notNull(),
-            'quotations' => $this->json()->null(),
-            'exception' => $this->json()->null(),
+            'datetime' => $this->string()->notNull(),
+            'type' => $this->string()->null(),
         ]);
+        if ($this->db->driverName === 'mysql' || $this->db->driverName === 'pgsql') {
+            $this->addPrimaryKey('pk_history', 'history', 'id');
+        }
     }
 
     /**

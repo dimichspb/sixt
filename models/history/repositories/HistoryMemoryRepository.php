@@ -73,7 +73,7 @@ class HistoryMemoryRepository implements HistoryRepositoryInterface
         try {
             $id = new Id(Uuid::uuid4()->toString());
         } catch (\Exception $exception) {
-            throw new RepositoryException();
+            throw new RepositoryException($exception->getMessage(), $exception->getCode(), $exception);
         }
 
         return $id;
