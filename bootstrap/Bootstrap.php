@@ -59,6 +59,8 @@ class Bootstrap implements BootstrapInterface
     {
         $container = \Yii::$container;
 
+        $app->db->open();
+
         /**
          * Define default origin, destination and start datetime values
          */
