@@ -88,7 +88,7 @@ codecept run
 
 ## TODOs
 
-1. Implement GoogleMapWidget
+1. ~~Implement GoogleMapWidget~~
 2. ~~Add DateTimeWidget to the request form~~
 3. ~~Implement database storage for Commissions~~
 4. ~~Implement history of requests~~
