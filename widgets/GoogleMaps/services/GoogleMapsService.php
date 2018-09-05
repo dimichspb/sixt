@@ -1,7 +1,6 @@
 <?php
 namespace app\widgets\GoogleMaps\services;
 
-
 use app\widgets\GoogleMaps\entities\Draggable;
 use app\widgets\GoogleMaps\entities\PlaceName;
 use app\widgets\GoogleMaps\entities\StrokeColor;
@@ -35,12 +34,30 @@ class GoogleMapsService
         }
 
         if (!$response instanceof \stdClass) {
-            throw new \RuntimeException('Expectin \stdClass object, but got ' . gettype($response));
+            throw new \RuntimeException('Expecting \stdClass object, but got ' . gettype($response));
         }
 
+        if (isset($response->error_message)) {
+            throw new \RuntimeException('Error in service: ' . $response->error_message);
+        }
+
+        if (!isset($response->status) || $response->status !== 'OK') {
+            throw new \RuntimeException('Service has returned wrong status. Response dump: ' . PHP_EOL . json_encode($response));
+        }
+
+        if (!isset($response->results) || !is_array($response->results)) {
+            throw new \RuntimeException('Service has returned no results array. Response dump: ' . PHP_EOL . json_encode($response));
+        }
+
+        if (!isset($response->results[0])) {
+            throw new \RuntimeException('Service has returned no first result. Response dump: ' . PHP_EOL . json_encode($response));
+        }
+
+        $result = $response->results[0];
+
         return new LatLng([
-            'lat' => $response->geometry->location->lat,
-            'lng' => $response->geometry->location->lng,
+            'lat' => $result->geometry->location->lat,
+            'lng' => $result->geometry->location->lng,
         ]);
     }
 

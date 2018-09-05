@@ -20,6 +20,11 @@ $this->title = Yii::$app->name;
                 ]) ?>
             </div>
         </div>
+        <div class="row quotations">
+            <div class="col-xs-12">
+
+            </div>
+        </div>
         <?php Pjax::end(); ?>
     </div>
 </div>

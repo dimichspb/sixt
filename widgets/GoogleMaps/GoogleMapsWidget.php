@@ -6,6 +6,8 @@ use app\widgets\GoogleMaps\entities\PlaceName;
 use app\widgets\GoogleMaps\entities\StrokeColor;
 use app\widgets\GoogleMaps\services\GoogleMapsService;
 use Assert\Assertion;
+use dosamigos\google\maps\controls\ZoomControlOptions;
+use dosamigos\google\maps\LatLngBounds;
 use dosamigos\google\maps\services\GeocodingClient;
 use yii\base\Application;
 use yii\bootstrap\Widget;
@@ -32,7 +34,7 @@ class GoogleMapsWidget extends Widget
     public $destination;
     public $destinationTitle = 'Destination';
 
-    public $zoom = 14;
+    public $zoom = 10;
     public $travelMode = \dosamigos\google\maps\services\TravelMode::DRIVING;
     public $strokeColor = '#FF0000';
     public $draggable = false;
@@ -71,13 +73,7 @@ class GoogleMapsWidget extends Widget
                 $destination
             ]);
 
-            $this->map = new Map([
-                'center' => $center,
-                'width' => '100%',
-                'zoom' => $this->zoom,
-            ]);
-
-            $script = $this->googleMapsService->getDirectionService(
+            /*$script = $this->googleMapsService->getDirectionService(
                 $this->map,
                 new PlaceName($this->origin),
                 new PlaceName($this->destination),
@@ -87,7 +83,7 @@ class GoogleMapsWidget extends Widget
             )->getJs();
 
             // Thats it, append the resulting script to the map
-            $this->map->appendScript($script);
+            $this->map->appendScript($script);*/
 
             // Lets add a marker now
             $originMarker = new Marker([
@@ -98,6 +94,17 @@ class GoogleMapsWidget extends Widget
             $destinationMarker = new Marker([
                 'position' => $destination,
                 'title' => $this->destinationTitle,
+            ]);
+
+            $bound = LatLngBounds::getBoundsOfMarkers([
+                $originMarker,
+                $destinationMarker
+            ]);
+
+            $this->map = new Map([
+                'center' => $center,
+                'width' => '100%',
+                'zoom' => $bound->getZoom(300),
             ]);
 
             // Add marker to the map

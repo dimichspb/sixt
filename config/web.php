@@ -66,10 +66,12 @@ $config = [
             ],
         ],
         'assetManager' => [
+            'linkAssets' => true,
+            'appendTimestamp' => true,
             'bundles' => [
                 'dosamigos\google\maps\MapAsset' => [
                     'options' => [
-                        'key' => file_exists('google-api-key.php')? require ('google-api-key.php'): null,
+                        'key' => file_exists(__DIR__ . '/google-api-key.php')? require (__DIR__ . '/google-api-key.php'): null,
                     ]
                 ]
             ]

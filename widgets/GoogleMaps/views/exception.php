@@ -6,4 +6,11 @@ use yii\bootstrap\Html;
 /** @var $exception \Exception */
 
 ?>
-<h2><?= Html::encode($exception->getMessage()); ?></h2>
+<h1>Exception:</h1>
+<h4><?= $exception->getCode() ?></h4>
+<p><?= $exception->getMessage() ?></p>
+<hr>
+<?php foreach ($exception->getTrace() as $item): ?>
+    <p><?= json_encode($item) ?></p>
+<?php endforeach; ?>
+

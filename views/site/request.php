@@ -22,24 +22,32 @@ $this->title = Yii::$app->name;
                 ]) ?>
             </div>
         </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <?php /* echo $this->render('request/_map', [
-                    'origin' => $requestForm->getOrigin()->getValue(),
-                    'destination' => $requestForm->getDestination()->getValue(),
-                ]) */?>
-            </div>
-        </div>
-        <div class="row">
+        <div class="row quotations">
             <div class="col-xs-12">
                 <?php if (isset($dataProvider)): ?>
-                    <?= $this->render('request/_quotations', [
-                        'dataProvider' => $dataProvider
-                    ]) ?>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <?= $this->render('request/_map', [
+                            'origin' => $requestForm->getOrigin()->getValue(),
+                            'destination' => $requestForm->getDestination()->getValue(),
+                        ]) ?>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <?= $this->render('request/_quotations', [
+                            'dataProvider' => $dataProvider
+                        ]) ?>
+                    </div>
+                </div>
                 <?php else: ?>
-                    <?= $this->render('request/_exception', [
-                        'exception' => $exception
-                    ]) ?>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <?= $this->render('request/_exception', [
+                            'exception' => $exception
+                        ]) ?>
+                    </div>
+                </div>
                 <?php endif; ?>
             </div>
         </div>

@@ -39,7 +39,10 @@ use dosamigos\datetimepicker\DateTimePicker;
         </div>
     </div>
     <div class="col-xs-12 col-md-2 valign-middle text-right">
-        <?= Html::submitButton('OK', ['class' => 'btn btn-success']); ?>
+        <?= Html::submitButton('OK', [
+            'class' => 'btn btn-success btn-submit',
+            'onclick' => 'addSpinner(".quotations");'
+        ]); ?>
     </div>
 </div>
 
